@@ -1,16 +1,28 @@
-# CSV to .parquet pipeline 
+# csv to parquet pipeline 
 
-Convert data in CSVs to .parquet files with a simple pipeline
+#### Purpose - to extract the data in a folder of csv files as Pandas DataFrames and store them as parquet files  
+#### Options:  
+####    - To get information about the data  
+####    - To drop any null values
 
-## Requirements 
-Set up the environment with UV (or your preferred package manager)
+# Disclaimer
+
+#### Fully manually/human written computer code and documentation.   
+#### Goal: practice of scripting and digital data manipulation
+#### Author - joaquimcsse
+
+## Environment
+Set up the environment with UV (or your preferred project manager)
 ```bash
     uv sync
 ```
 
-## Usage 
+## Usage - importing
 ```python
-    if __name__ == "__main__":
-        from preprocessing import topqt_pipeline
-        topqt_pipeline.run_pipe()
+    from csvtoparquet import pipeline
+
+    pipeline.run_pipe(
+        verbose=True,
+        drop_nulls=True
+        )
 ```
