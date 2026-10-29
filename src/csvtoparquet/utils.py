@@ -1,5 +1,10 @@
+import pyarrow
 import pandas as pd
-import os
+import re, os
+
+def getFileName(fp):
+    name = re.search('[\w]+?(?=\.)', fp)
+    return name.group()
 
 def load(
     fp:str,
@@ -7,9 +12,11 @@ def load(
     drop_nulls:bool=True
     ) -> pd.DataFrame:
 
-    print(f"--> Loading {fp}")
-    df = pd.read_csv(fp)
-    print(f"--> Loaded {fp}")
+    name = getFileName(fp)
+
+    print(f"--> Loading {name}")
+    df = pd.read_csv(fp, engine='python')
+    print(f"--> Loaded {name}")
 
     if verbose: 
         print(f"Info:")
@@ -17,18 +24,19 @@ def load(
     if drop_nulls:
         df.dropna(inplace=True)
 
-    return df
+    return df, name
 
 def export(
     df:pd.DataFrame,
     path:str,
+    name:str,
     verbose:bool=True
     ):
     if not os.path.exists(path):
         raise FileNotFoundError(f"The parquet files path: '{path}' could not be found")
 
     df.to_parquet(
-        path=path,
+        path=os.path.join(path, f"{name}.parquet"),
         engine='auto',
         compression='snappy',
         index=None, 

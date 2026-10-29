@@ -1,4 +1,4 @@
-from .tools import load, export
+from .utils import load, export
 import glob, os, sys
 
 def run_pipe(verbose:bool=True, drop_nulls:bool=True):
@@ -24,9 +24,9 @@ def run_pipe(verbose:bool=True, drop_nulls:bool=True):
     for file in glob.glob(f'{sys.argv[1]}/*.csv'):
         files.append(file)
     for file in files:
-        df = load(
+        df, name = load(
             file,
             verbose=verbose,
             drop_nulls=drop_nulls,
         )
-        export(df, sys.argv[2])
+        export(df, sys.argv[2], name)

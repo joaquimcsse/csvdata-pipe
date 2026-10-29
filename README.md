@@ -1,18 +1,19 @@
 # csv to parquet pipeline 
 
-#### Purpose - to extract the data in a folder of csv files as Pandas DataFrames and store them as parquet files  
-#### Options:  
+#### The idea is to extract the data in a folder of csv files as Pandas DataFrames and store them as parquet files (using the original file names)
+#### The advantage is in the nature of storing digital data as parquet files - although not human-readable or editable, they are fast to transport and to be read by digital tools
+#### Extra options:  
 ####    - To get information about the data  
-####    - To drop any null values
+####    - To drop any null values in the data
 
 # Disclaimer
 
-#### Fully manually/human written computer code and documentation.   
-#### Goal: practice of scripting and digital data manipulation
-#### Author - joaquimcsse
+#### Fully manually/human written computer code AND documentation.   
+#### Goal: practice of scripting and digital data manipulation concepts
+#### Author - joaquimcsse (https://github.com/joaquimcsse)
 
 ## Environment
-Set up the environment with UV (or your preferred project manager)
+This is a Python project, so set up the environment with UV (or your preferred package manager!)
 ```bash
     uv sync
 ```
@@ -22,7 +23,7 @@ Set up the environment with UV (or your preferred project manager)
     from csvtoparquet import pipeline
 
     pipeline.run_pipe(
-        verbose=True,
-        drop_nulls=True
-        )
+            verbose=True,
+            drop_nulls=True
+            )
 ```
